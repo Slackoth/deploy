@@ -7,8 +7,6 @@ const filterBtn = document.getElementById('filterBtn');
 const stateBtn = document.getElementsByClassName('stateBtn');
 
 
-
-
 //Loading the users data
 (async function loadUser(){
     refresh();
@@ -17,7 +15,7 @@ const stateBtn = document.getElementsByClassName('stateBtn');
 searchBtn.addEventListener('click', async event=>{
     event.preventDefault();
     const carnet = document.getElementById('searchIn').value;
-    await fetch(`http://localhost:3000/users/search?carnet=${carnet}`)
+    await fetch(`https://reserva-lab.herokuapp.com/users/search?carnet=${carnet}`)
     .then(res=>{
         return res.json();    
     })
@@ -79,7 +77,7 @@ $("#exampleModalCenter").on("show.bs.modal", async e=>{
     const userEmail = document.getElementById('userEmail');
     //const userType = document.getElementById('userType');
     
-    await fetch(`http://localhost:3000/users/show?carnet=${carnet}`)
+    await fetch(`https://reserva-lab.herokuapp.com/users/show?carnet=${carnet}`)
       .then(res => {
           return res.json()
       })
@@ -102,7 +100,7 @@ editBtn.addEventListener('click', async event=>{
     //const userType = document.getElementById('userType');
     //const truePass = await hp.helpers.encryptPassword(userPass);
     
-    await fetch(`http://localhost:3000/users/edit?carnet=${userCarnet.innerText}`,
+    await fetch(`https://reserva-lab.herokuapp.com/users/edit?carnet=${userCarnet.innerText}`,
     {
         method: 'PUT',
         headers: {'Content-type': 'application/json; charset=UTF-8'},
@@ -138,7 +136,7 @@ advancedBtn.addEventListener('click', async event=>{
     const career = document.getElementById('career');
     const subject = document.getElementById('subject');
     event.preventDefault();
-    await fetch('http://localhost:3000/users/fillAdvanced?career=true')
+    await fetch('https://reserva-lab.herokuapp.com/users/fillAdvanced?career=true')
     .then(res=>{
         return res.json();
     })
@@ -150,7 +148,7 @@ advancedBtn.addEventListener('click', async event=>{
         });
     })
 
-    await fetch('http://localhost:3000/users/fillAdvanced?subject=false')
+    await fetch('https://reserva-lab.herokuapp.com/users/fillAdvanced?subject=false')
     .then(res=>{
         return res.json();
     })
@@ -171,7 +169,7 @@ filterBtn.addEventListener('click', async event=>{
     const subject = document.getElementById('subject');
     const career = document.getElementById('career');
     
-    await fetch(`http://localhost:3000/users/showAdvanced?type=${type.value}&state=${state.value}&subject=${subject.value}&career=${career.value}`)
+    await fetch(`https://reserva-lab.herokuapp.com/users/showAdvanced?type=${type.value}&state=${state.value}&subject=${subject.value}&career=${career.value}`)
     .then(res=>{
         return res.json();
     })
@@ -226,7 +224,7 @@ function addUpdateEvent() {
         if (item.innerText == 'Activar') {
             item.addEventListener('click', async event=>{
                 event.preventDefault();
-                await fetch(`http://localhost:3000/users/turn?carnet=${carnet}&state=true`,
+                await fetch(`https://reserva-lab.herokuapp.com/users/turn?carnet=${carnet}&state=true`,
                 {
                     method: 'PUT',
                     headers: {'Content-type': 'application/json; charset=UTF-8'},
@@ -270,7 +268,7 @@ function addUpdateEvent() {
 }
 //Refreshes the table
 function refresh() {
-    fetch('http://localhost:3000/users/fill')
+    fetch('https://reserva-lab.herokuapp.com/users/fill')
     .then(res=>{
         return res.json();
     })
