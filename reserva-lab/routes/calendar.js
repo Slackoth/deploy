@@ -13,7 +13,7 @@ router.get('/', isLoggedIn, function(req, res, next) {
   // } 
   console.log(req.session);
   
-  res.render('index')
+  res.render('CalendarAdmin')
 });
 router.get(`/Evento`,calendarControl.getEventoById)
 router.get('/sp', calendarControl.getSoporteEventoById)

@@ -15,15 +15,18 @@ var informe = require('./routes/informe');
 var signUp = require('./routes/signUp');
 var forbidden = require('./routes/forbidden');
 var calendar = require('./routes/calendar');
+var cors = require('cors');
 
 // initialization
 var app = express();
 require('./models/passport');
+require('dotenv').config();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
