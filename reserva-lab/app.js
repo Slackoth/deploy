@@ -6,15 +6,15 @@ var logger = require('morgan');
 const passport = require('passport');
 //const flash =  require('connect-flash');
 const session = require('express-session');
-const cors = require('cors');
 
 var indexRouter = require('./routes/index');
-var logIn = require('./routes/login');
+//var logIn = require('./routes/login');
 var adminSeeUser = require('./routes/adminSeeUser');
-var usersRouter = require('./routes/users');
+//var usersRouter = require('./routes/users');
 var informe = require('./routes/informe');
 var signUp = require('./routes/signUp');
 var forbidden = require('./routes/forbidden');
+var calendar = require('./routes/calendar');
 
 // initialization
 var app = express();
@@ -24,7 +24,6 @@ require('./models/passport');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -53,8 +52,9 @@ app.use(passport.session());
 // });
 
 app.use('/', indexRouter);
-app.use('/login', logIn);
+//app.use('/login', logIn);
 app.use('/signUp', signUp);
+app.use('/calendar', calendar);
 app.use('/users', adminSeeUser);
 //app.use('/admin/users', adminSeeUser);
 //app.use('/users', usersRouter);
